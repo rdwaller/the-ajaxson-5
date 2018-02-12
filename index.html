@@ -1,20 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>The AJAXson 5</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script type="text/javascript" src="request-gif.js"></script>
+    <title>The AJAXson 5</title>
 </head>
 <body>
-    <h1>The AJAXson 5</h1>
+    <h1 class='page_heading'>The AJAXson 5</h1>
 
-    <form id="form-gif-request" />
-        <label>What kind of Jackson 5 related gif do you want?</label>
-        <input name="tag" type="text"/>
-        <input type="submit" value="Get my Gif!" />
+    <form id="form-gif-request">
+        <div class='form_input_block'>
+            <label class='form_label'>What kind of Jackson 5 related gif do you want?</label>
+            <p><input id='tag_input' name="tag" type="text"/></p>
+        </div>
+        <div class='form_input_block'>
+            <label class='form_label'>Prove you are not a robot by filling in this sentence:</label>
+            <p><input id='captcha_input' name="captcha_input" type="text" /><span id='complete_captcha_sentence'>Jacksons are better than one.</span></p>
+            <p id="captcha_denied" class = "error" hidden="true">No gifs for you.</p>
+            <p><input id='submit_button' type="submit" value="Get my Gif!" /></p>
+        </div>
     </form>
 
-    <img id="gif" src="" hidden="true"/>
+    <p id="loading">Loading...</p>
+    <img id="gif" src="" hidden="true" />
     <p id="feedback" hidden="true`"></p>
 
 </body>
