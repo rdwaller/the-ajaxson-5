@@ -12,10 +12,14 @@ $(document).ready(function() {
  * upon receiving a response from Giphy, updates the DOM to display the new GIF
  */
 function fetchAndDisplayGif(event) {
-    
+
     // This prevents the form submission from doing what it normally does: send a request (which would cause our page to refresh).
     // Because we will be making our own AJAX request, we dont need to send a normal request and we definitely don't want the page to refresh.
     event.preventDefault();
+    $("#gif").hide()
+    $("#gif").attr("hidden", true)
+    $("#captcha_denied").attr("hidden", true);
+    $("#complete_captcha_sentence").attr('class', '');
     captchaCheck()
     
     // get the user's input text from the DOM
@@ -27,7 +31,7 @@ function fetchAndDisplayGif(event) {
     // configure a few parameters to attach to our request
     var params = { 
         api_key: "dc6zaTOxFJmzC", 
-        tag : "jackson 5," + searchQuery // TODO should be e.g. "jackson 5 dance" - COMP
+        tag : "jackson 5, " + searchQuery // TODO should be e.g. "jackson 5 dance" - COMP
     };
     
     // make an ajax request for a random GIF
@@ -64,7 +68,10 @@ function captchaCheck() {
     var captchaInput = $("input[name=captcha_input]").val();
     console.log(captchaInput);
     if (captchaInput != 5) {
+        $("#complete_captcha_sentence").attr('class','bad_captcha newClass');
         throw $("#captcha_denied").attr("hidden", false);
+    } else {
+        $("#gif").show()
     }
 }
 
